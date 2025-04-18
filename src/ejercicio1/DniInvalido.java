@@ -8,5 +8,10 @@ public class DniInvalido extends IOException {
 		
 	}
 
+	@Override
+	public String getMessage() {
+
+		return "DNI INVALIDO";
+	}
 
 }

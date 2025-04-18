@@ -21,7 +21,7 @@ public class Persona {
 
     public static boolean validarDni(String dni)throws DniInvalido {
     	for(int i=0; i<dni.length();i++) {
-    		if(Character.isAlphabetic(dni.charAt(i))) {
+    		if(!Character.isDigit(dni.charAt(i))) {
     			throw new DniInvalido();
     		}
     	}
@@ -55,6 +55,6 @@ public class Persona {
 
     @Override
     public String toString() {
-        return nombre + " " + apellido + " " + dni;
+        return "Persona: "+ nombre + " -  " + apellido + " - " + dni;
     }
 }
