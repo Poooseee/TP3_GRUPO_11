@@ -19,6 +19,15 @@ public class Persona {
         this.dni = dni;
     }
 
+    public static boolean validarDni(String dni)throws DniInvalido {
+    	for(int i=0; i<dni.length();i++) {
+    		if(Character.isAlphabetic(dni.charAt(i))) {
+    			throw new DniInvalido();
+    		}
+    	}
+    	return true;
+    }
+    
     // Getters y Setters
     public String getNombre() {
         return nombre;
