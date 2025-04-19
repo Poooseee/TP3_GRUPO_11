@@ -1,5 +1,6 @@
 package ejercicio1;
 
+import java.io.FileReader;
 
 public class Archivo {
     private String ruta;
@@ -16,4 +17,13 @@ public class Archivo {
 		this.ruta = ruta;
 	}
 
+	public void leerLineas() {
+		FileReader entrada;
+		try {
+			entrada = new FileReader(ruta);
+		}
+		catch{
+			
+		}
+	}
 }

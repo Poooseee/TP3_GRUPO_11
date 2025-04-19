@@ -1,6 +1,6 @@
 package ejercicio1;
 
-public class Persona {
+public class Persona implements Comparable<Persona>{
 
     private String nombre;
     private String apellido;
@@ -57,4 +57,20 @@ public class Persona {
     public String toString() {
         return "Persona: "+ nombre + " -  " + apellido + " - " + dni;
     }
+
+	@Override
+	public int compareTo(Persona persona) {
+		//ORDENADOS POR APELLIDO 
+	    if (this.apellido.equals(persona.apellido)) {
+	        return 0;
+	    }
+	    if (this.apellido.compareTo(persona.apellido) < 0) {
+	        return -1;
+	    } 
+	    else {
+	        return 1;
+	    }
+	}
+    
+    
 }
