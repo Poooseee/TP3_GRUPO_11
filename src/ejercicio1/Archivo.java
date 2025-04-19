@@ -1,6 +1,7 @@
 package ejercicio1;
 
 import java.io.FileReader;
+import java.io.IOException;
 
 public class Archivo {
     private String ruta;
@@ -22,8 +23,8 @@ public class Archivo {
 		try {
 			entrada = new FileReader(ruta);
 		}
-		catch{
-			
+		catch(IOException e){
+			System.out.println("No se encontró el archivo.");
 		}
 	}
 }
