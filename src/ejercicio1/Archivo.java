@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.TreeSet;
 
 public class Archivo {
     private String ruta;
@@ -27,7 +28,7 @@ public class Archivo {
 		}else return false;
 	}
 
-	public void leerLineas() {
+	/*public void leerLineas() {
 		FileReader entrada;
 		try {
 			entrada = new FileReader(ruta);
@@ -44,7 +45,7 @@ public class Archivo {
 		catch(IOException e){
 			System.out.println("No se encontró el archivo.");
 		}
-	}
+	}*/
 	
 	public void leerLetraXLetra() {
 		FileReader entrada;
@@ -59,6 +60,39 @@ public class Archivo {
 		}catch(IOException e){
 			System.out.println("No se encontró el archivo.");
 		}
+	}
+	
+	public TreeSet<Persona> leerLineas() {
+	    TreeSet<Persona> listaPersonas = new TreeSet<>();
+
+	    try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+	        String linea;
+
+	        while ((linea = br.readLine()) != null) {
+	            if (!linea.trim().isEmpty()) {
+	                String[] datos = linea.split("-");
+
+	                if (datos.length == 3) {
+	                    String nombre = datos[0].trim();
+	                    String apellido = datos[1].trim();
+	                    String dni = datos[2].trim();
+
+	                    try {
+	                        Persona.validarDni(dni);
+	                        listaPersonas.add(new Persona(nombre, apellido, dni));
+	                    } catch (DniInvalido e) {
+	                        System.out.println("DNI inválido, no se agrega: " + dni);
+	                    }
+	                } else {
+	                    System.out.println("Línea con formato incorrecto: " + linea);
+	                }
+	            }
+	        }
+	    } catch (IOException e) {
+	        System.out.println("Error al leer el archivo: " + e.getMessage());
+	    }
+
+	    return listaPersonas;
 	}
 	
 }
