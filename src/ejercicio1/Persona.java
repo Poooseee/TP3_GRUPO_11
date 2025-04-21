@@ -1,5 +1,8 @@
 package ejercicio1;
 
+import java.util.List;
+import java.util.TreeSet;
+
 public class Persona implements Comparable<Persona>{
 
     private String nombre;
@@ -72,5 +75,44 @@ public class Persona implements Comparable<Persona>{
 	    }
 	}
     
+	public TreeSet<Persona> cargarPersonasDesdeElArchivo(String ruta){
+        DniInvalido validaciones = new DniInvalido();
+        
+		Archivo archivoPersonas = new Archivo("ejercicio1/Personas.txt");
+		
+		TreeSet<Persona> listaPersonas = new TreeSet<Persona>();
+		
+		List <String> lineas = archivoPersonas.leerLineas();
+		
+		for(String linea : lineas) {
+			Persona persona = crearPersonaApartirDeLinea(linea);
+		if(persona != null) {
+			try {
+				validaciones.verificarDniInvalido(persona.getDni());
+				
+				listaPersonas.add(persona);
+				
+			}catch(DniInvalido e) {
+				System.out.println(persona.getDni()+" - "+e.getMessage());
+			}
+		}
+		   
+		}
+		return listaPersonas;
+	}
+	
+	public static Persona crearPersonaApartirDeLinea(String linea) {
+		String[] vector = linea.split("-");
+		
+		if(vector.length == 3) {
+			String nombre = vector[0].trim();
+			String apellido = vector[1].trim();
+			String Dni = vector[2].trim();
+			
+			Persona persona = new Persona(nombre,apellido,Dni);
+		    return persona;
+		}
+		return null;
+	}
     
 }
