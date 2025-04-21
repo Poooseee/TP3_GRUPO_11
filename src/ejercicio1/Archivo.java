@@ -49,12 +49,36 @@ public class Archivo {
 	        }
 	        
 	        bufferLeerLineas.close();
+	        entrada.close();
 	    }
 	    catch (IOException e) {
 	    	System.out.println("No se encontró el archivo.");
 	    }
 	    return lineas;
 	}
+	
+	public void leerArchivo() {
+	    FileReader entrada;
+
+	    try{
+	        entrada = new FileReader(ruta);
+	        BufferedReader bufferLeerLineas = new BufferedReader(entrada);
+	        
+	        String linea;
+	        
+	        while((linea = bufferLeerLineas.readLine()) != null) {
+	        	System.out.println(linea);
+	        }
+	        
+	        bufferLeerLineas.close();
+	        entrada.close();
+	    }
+	    catch (IOException e) {
+	    	System.out.println("No se encontró el archivo.");
+	    }
+
+	}
+	
 	
 	public void EscribirLineas(TreeSet<Persona> personas) {
 		try {

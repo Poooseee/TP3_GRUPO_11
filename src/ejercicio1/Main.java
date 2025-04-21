@@ -42,15 +42,29 @@ public class Main {
 
 	public static void main(String[] args) {
 	    TreeSet<Persona> listaPersonasValidadas = cargarPersonasDesdeElArchivo("ejercicio1/Personas.txt");
-		crearYcargarArchivo(listaPersonasValidadas);
-		System.out.println("--- aca comineza el archivo --- ");
+		
+	    /*
+	    crearYcargarArchivo(listaPersonasValidadas);
+	    
+		System.out.println("--- RESULTADO.TXT --- ");
+		
 		leerArchivo();
+		*/
+	    Archivo arcPersonas = new Archivo("ejercicio1/Resultado.txt");
+	    arcPersonas.EscribirLineas(listaPersonasValidadas);
+	    
+		System.out.println("--- RESULTADO.TXT --- ");
+		
+		arcPersonas.leerArchivo();
 		
 	}
 	public static TreeSet<Persona> cargarPersonasDesdeElArchivo(String ruta){
         DniInvalido validaciones = new DniInvalido();
+        
 		Archivo archivoPersonas = new Archivo("ejercicio1/Personas.txt");
+		
 		TreeSet<Persona> listaPersonas = new TreeSet<Persona>();
+		
 		List <String> lineas = archivoPersonas.leerLineas();
 		
 		for(String linea : lineas) {
@@ -58,6 +72,7 @@ public class Main {
 		if(persona != null) {
 			try {
 				validaciones.verificarDniInvalido(persona.getDni());
+				
 				listaPersonas.add(persona);
 				
 			}catch(DniInvalido e) {
@@ -71,8 +86,12 @@ public class Main {
 	public static Persona crearPersonaApartirDeLinea(String linea) {
 		String[] vector = linea.split("-");
 		
-		if(vector.length >=3) {
-			Persona persona = new Persona(vector[0],vector[1],vector[2]);
+		if(vector.length == 3) {
+			String nombre = vector[0].trim();
+			String apellido = vector[1].trim();
+			String Dni = vector[2].trim();
+			
+			Persona persona = new Persona(nombre,apellido,Dni);
 		    return persona;
 		}
 		return null;
@@ -82,6 +101,7 @@ public class Main {
 		Archivo arcPersonas = new Archivo("ejercicio1/Resultado.txt");
 	    arcPersonas.EscribirLineas(listaPersonas);
 	}
+	
 	public static void leerArchivo() {
 		Archivo arcPersonas = new Archivo("ejercicio1/Resultado.txt");
 		List<String> lista = arcPersonas.leerLineas();
