@@ -58,13 +58,14 @@ public class Archivo {
 	
 	public void EscribirLineas(TreeSet<Persona> personas) {
 		try {
-			FileWriter fw = new FileWriter(ruta, true);
+			FileWriter fw = new FileWriter(ruta, false);
 			BufferedWriter bw = new BufferedWriter(fw);
-			Iterator<Persona> Ipersonas = personas.iterator();
 			
-			//LEER LOS DATOS DEL TREESET.
-			
-			bw.write("");
+				for (Persona persona : personas) {
+					bw.write(persona.toString());
+					bw.newLine();
+				} 
+				
 			bw.close();
 			fw.close();
 		} catch (IOException e) {

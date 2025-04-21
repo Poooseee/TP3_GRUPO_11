@@ -55,7 +55,7 @@ public class Persona implements Comparable<Persona>{
 
     @Override
     public String toString() {
-        return "Persona: "+ nombre + " -  " + apellido + " - " + dni;
+        return  nombre + "-" + apellido + "-" + dni;
     }
 
 	@Override
