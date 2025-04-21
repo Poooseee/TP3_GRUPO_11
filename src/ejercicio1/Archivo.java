@@ -1,9 +1,12 @@
 package ejercicio1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Archivo {
@@ -95,4 +98,19 @@ public class Archivo {
 	    return listaPersonas;
 	}
 	
+	public void EscribirLineas(TreeSet<Persona> personas) {
+		try {
+			FileWriter fw = new FileWriter(ruta, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			Iterator<Persona> Ipersonas = personas.iterator();
+			
+			//LEER LOS DATOS DEL TREESET.
+			
+			bw.write("");
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
