@@ -40,15 +40,15 @@ public class Archivo {
 
 	    try{
 	        entrada = new FileReader(ruta);
-	        BufferedReader miBuffer = new BufferedReader(entrada);
+	        BufferedReader bufferLeerLineas = new BufferedReader(entrada);
 	        
 	        String linea;
 	        
-	        while((linea = miBuffer.readLine()) != null) {
+	        while((linea = bufferLeerLineas.readLine()) != null) {
 	        	lineas.add(linea);
 	        }
 	        
-	        miBuffer.close();
+	        bufferLeerLineas.close();
 	    }
 	    catch (IOException e) {
 	    	System.out.println("No se encontró el archivo.");
