@@ -43,14 +43,15 @@ public class Main {
 	public static void main(String[] args) {
 	    TreeSet<Persona> listaPersonasValidadas = cargarPersonasDesdeElArchivo("ejercicio1/Personas.txt");
 		
-	    /*
-	    crearYcargarArchivo(listaPersonasValidadas);
+	    Archivo arcPersonas = new Archivo("ejercicio1/Resultado.txt");
 	    
+	    
+	    crearYcargarArchivo(listaPersonasValidadas,arcPersonas);
 		System.out.println("--- RESULTADO.TXT --- ");
 		
-		leerArchivo();
-		*/
-	    Archivo arcPersonas = new Archivo("ejercicio1/Resultado.txt");
+		leerArchivo(arcPersonas);
+		
+	    
 	    arcPersonas.EscribirLineas(listaPersonasValidadas);
 	    
 		System.out.println("--- RESULTADO.TXT --- ");
@@ -97,17 +98,12 @@ public class Main {
 		return null;
 	}
 	
-	public static void crearYcargarArchivo(TreeSet<Persona> listaPersonas) {
-		Archivo arcPersonas = new Archivo("ejercicio1/Resultado.txt");
+	public static void crearYcargarArchivo(TreeSet<Persona> listaPersonas,Archivo arcPersonas) {
 	    arcPersonas.EscribirLineas(listaPersonas);
 	}
 	
-	public static void leerArchivo() {
-		Archivo arcPersonas = new Archivo("ejercicio1/Resultado.txt");
-		List<String> lista = arcPersonas.leerLineas();
-		for (String personas : lista) {
-			System.out.println(personas);
-		}
+	public static void leerArchivo(Archivo arcPersonas) {
+		arcPersonas.leerArchivo();
 	}
 
 	}
